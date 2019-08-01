@@ -1,61 +1,82 @@
-![App Brewery Banner](https://github.com/londonappbrewery/Images/blob/master/AppBreweryBanner.png)
+## Original Python file:
+
+class aTest:
+    def __init__(self, name, twoGroups, continuous, parametric, covariates, paired):
+        self.name = name
+        self.twoGroups = twoGroups
+        self.continuous = continuous
+        self.parametric = parametric
+        self.covariates = covariates
+        self.paired = paired
 
 
-# Quizzler ❓
-
-## Our Goal
-
-In this tutorial we will be reviewing Stateful and Stateless Widgets as well as learning about the fundamental building blocks of Object Oriented Programming (OOP) - Classes and Objects. 
+testList = []
 
 
-## What you will create
-
-We’re going to make a quiz app that tests your general knowledge. As one of the most popular types of apps on the app stores, you can create your own quiz for other people to enjoy!
-
-![Finished App](https://github.com/londonappbrewery/Images/blob/master/quizzler-demo.gif)
-
-## What you will learn
-
-- Modularising your code into separate classes.
-- Dart classes and objects.
-- Using class constructors.
-- Extracting Widgets to refactor your code.
-- private and public modifiers in Dart.
-- How to use Dart lists.
-- The difference between var, const and final.
-
-## Code Snippet for Project
-
-```
-Question('Some cats are actually allergic to humans', true),
-    Question('You can lead a cow down stairs but not up stairs.', false),
-    Question('Approximately one quarter of human bones are in the feet.', true),
-    Question('A slug\'s blood is green.', true),
-    Question('Buzz Aldrin\'s mother\'s maiden name was \"Moon\".', true),
-    Question('It is illegal to pee in the Ocean in Portugal.', true),
-    Question(
-        'No piece of square dry paper can be folded in half more than 7 times.',
-        false),
-    Question(
-        'In London, UK, if you happen to die in the House of Parliament, you are technically entitled to a state funeral, because the building is considered too sacred a place.',
-        true),
-    Question(
-        'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',
-        false),
-    Question(
-        'The total surface area of two human lungs is approximately 70 square metres.',
-        true),
-    Question('Google was originally called \"Backrub\".', true),
-    Question(
-        'Chocolate affects a dog\'s heart and nervous system; a few ounces are enough to kill a small dog.',
-        true),
-    Question(
-        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
-        true),
-
-```
+def makeList():
+    testList.append(aTest("independent samples t-test", 1, 1, 1, 0, 0))
+    testList.append(aTest("dependent samples t-test", 1, 1, 1, 0, 1))
+    testList.append(aTest("Mann-Whitney U-test", 1, 1, 0, 0, 0))
+    testList.append(aTest("Wilcoxson matched pairs test", 1, 1, 0, 0, 1))
+    testList.append(aTest("one-way independent ANOVA", 0, 1, 1, 0, 0))
+    testList.append(aTest("Kruskall-Wallis test", 0, 1, 0, 0, 0))
+    testList.append(aTest("one-way repeated measures ANOVA", 0, 1, 1, 0, 1))
+    testList.append(aTest("Friedman's ANOVA", 0, 1, 0, 0, 1))
+    # testList.append(aTest("Chi squared test",0,0,0,0,0))...check on this
+    testList.append(aTest("ANCOVA", -1, 1, 1, 1, 0))
 
 
->This is a companion project to The App Brewery's Complete Flutter Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
+def printList():
+    if len(testList) == 0:
+        print("No tests match all the given criteria.")
+    else:
+        for test in testList:
+            print(test.name)
 
-![End Banner](https://github.com/londonappbrewery/Images/blob/master/readme-end-banner.png)
+
+def isParametric():
+    for test in list(testList):
+        if test.parametric == False:
+            testList.remove(test)
+
+
+def isNotParametric():
+    for test in list(testList):
+        if test.parametric == True:
+            testList.remove(test)
+
+
+def isTwoGroups():
+    for test in list(testList):
+        if test.twoGroups == False:
+            testList.remove(test)
+
+
+def isNotTwoGroups():
+    for test in list(testList):
+        if test.twoGroups == True:
+            testList.remove(test)
+
+
+def hasCovariate():
+    for test in list(testList):
+        if test.covariates == False:
+            testList.remove(test)
+
+
+def hasNoCovariate():
+    for test in list(testList):
+        if test.covariates == True:
+            testList.remove(test)
+
+
+def isPaired():
+    for test in list(testList):
+        if test.paired == False:
+            testList.remove(test)
+
+
+def isNotPaired():
+    for test in list(testList):
+        if test.paired == True:
+            testList.remove(test)
