@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'quiz_brain.dart';
+import 'stat_brain.dart';
+import 'tests.dart';
 
-void main() => runApp(Quizzler());
+void main() {
+  runApp(StatTest());
+}
 
-QuizBrain quizBrain = QuizBrain();
+StatBrain statBrain = StatBrain();
 
-class Quizzler extends StatelessWidget {
+class StatTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,7 +61,7 @@ class _QuizPageState extends State<QuizPage> {
             ),
             child: Center(
               child: Text(
-                quizBrain.getQuestion(),
+                statBrain.getQuestion(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -84,7 +87,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  quizBrain.nextQuestion();
+                  statBrain.yesTap();
                 });
               },
             ),
@@ -104,7 +107,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  quizBrain.nextQuestion();
+                  statBrain.noTap();
                 });
               },
             ),
@@ -116,33 +119,71 @@ class _QuizPageState extends State<QuizPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
+//                RaisedButton(
+//                  color: Colors.grey[700],
+//                  child: Text(
+//                    '<- Back',
+//                    style: TextStyle(
+//                      fontSize: 20.0,
+//                      color: Colors.white,
+//                    ),
+//                  ),
+//                  onPressed: () {
+//                    setState(() {
+//                      statBrain.previousQuestion();
+//                    });
+//                  },
+//                ),
                 FlatButton(
-                  color: Colors.grey[700],
-                  child: Text(
-                    '<- Back',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
-                    ),
+                  color: Colors.grey[300],
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.arrow_back),
+                      Text(
+                        'Back',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ],
                   ),
                   onPressed: () {
                     setState(() {
-                      quizBrain.nextQuestion();
+                      statBrain.previousQuestion();
                     });
                   },
                 ),
                 FlatButton(
-                  color: Colors.grey[700],
+                  color: Colors.grey[300],
                   child: Text(
-                    'Ignore ->',
+                    'Start Over',
                     style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
+                      fontSize: 15.0,
                     ),
                   ),
                   onPressed: () {
                     setState(() {
-                      quizBrain.nextQuestion();
+                      statBrain.resetTestList();
+                      statBrain.resetQuestionNumber();
+                    });
+                  },
+                ),
+                FlatButton(
+                  color: Colors.grey[300],
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        'Ignore',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                        ),
+                      ),
+                      Icon(Icons.arrow_forward),
+                    ],
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      statBrain.nextQuestion();
                     });
                   },
                 ),
@@ -150,14 +191,7 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
       ],
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
