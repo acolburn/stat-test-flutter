@@ -12,18 +12,20 @@ class Question {
 class StatBrain {
   int _questionNumber = 0;
 
+
   List<Question> questionList = [
     Question(
         'Is your data numerical?\n\nTap YES if your data is numerical, NO if it\'s categorical.'),
     Question(
-        'Do you have two groups?\n\nTap YES if you have two groups, NO if you have three or more groups.'),
+        'Are you comparing two sets of data?\n\nTap YES if you have two data sets, NO if you have three or more sets.'),
     Question(
-        'Are your groups paired?\n\nTap YES if your groups are paired, NO if they are unpaired.'),
+        'Are your groups paired?\n\nTap YES if the data is from paired or matched groups, NO if they are unpaired.'),
     Question(
         'Is your data parametric?\n\nTap YES if your data is parametric, NO if it is not.'),
     Question(
         'Are you working with a covariate?\n\nTap YES if you are working with a covariate, NO if you are not.')
   ];
+
 
   String getQuestion() {
     String result;

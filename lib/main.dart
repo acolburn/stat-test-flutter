@@ -75,42 +75,52 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
+            child: Material(
+              elevation: 5.0,
               color: Colors.green,
-              child: Text(
-                'Yes',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
+              borderRadius: BorderRadius.circular(30.0),
+              child: MaterialButton(
+                onPressed: () {
+                  setState(() {
+                    statBrain.yesTap();
+                  });
+                },
+                minWidth: 200.0,
+                height: 42.0,
+                child: Text(
+                  'Yes',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
                 ),
               ),
-              onPressed: () {
-                setState(() {
-                  statBrain.yesTap();
-                });
-              },
             ),
           ),
         ),
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
-              child: Text(
-                'No',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
-                ),
-              ),
-              onPressed: () {
-                setState(() {
-                  statBrain.noTap();
-                });
-              },
-            ),
+            child: Material(
+                elevation: 5.0,
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(30.0),
+                child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      statBrain.noTap();
+                    });
+                  },
+                  minWidth: 200.0,
+                  height: 42.0,
+                  child: Text(
+                    'No',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                )),
           ),
         ),
         Expanded(
@@ -119,21 +129,6 @@ class _QuizPageState extends State<QuizPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-//                RaisedButton(
-//                  color: Colors.grey[700],
-//                  child: Text(
-//                    '<- Back',
-//                    style: TextStyle(
-//                      fontSize: 20.0,
-//                      color: Colors.white,
-//                    ),
-//                  ),
-//                  onPressed: () {
-//                    setState(() {
-//                      statBrain.previousQuestion();
-//                    });
-//                  },
-//                ),
                 FlatButton(
                   color: Colors.grey[300],
                   child: Row(
