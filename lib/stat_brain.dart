@@ -2,30 +2,30 @@ import 'tests.dart';
 
 class Question {
   String question;
+  String subheading;
   bool response;
 
-  Question(String q) {
+  Question(String q, String sh) {
     question = q;
+    subheading = sh;
   }
 }
 
 class StatBrain {
   int _questionNumber = 0;
 
-
   List<Question> questionList = [
-    Question(
-        'Is your data numerical?\n\nTap YES if your data is numerical, NO if it\'s categorical.'),
-    Question(
-        'Are you comparing two sets of data?\n\nTap YES if you have two data sets, NO if you have three or more sets.'),
-    Question(
-        'Are your groups paired?\n\nTap YES if the data is from paired or matched groups, NO if they are unpaired.'),
-    Question(
-        'Is your data parametric?\n\nTap YES if your data is parametric, NO if it is not.'),
-    Question(
-        'Are you working with a covariate?\n\nTap YES if you are working with a covariate, NO if you are not.')
+    Question('Is your data numerical?',
+        'Tap YES if your data is numerical, NO if it\'s categorical.'),
+    Question('Are you comparing two sets of data?',
+        'Tap YES if you have two data sets, NO if you have three or more sets.'),
+    Question('Are your groups paired?',
+        'Tap YES if the data is from paired or matched groups, NO if they are unpaired.'),
+    Question('Is your data parametric?',
+        'Tap YES if your data is parametric, NO if it is not.'),
+    Question('Are you working with a covariate?',
+        'Tap YES if you are working with a covariate, NO if you are not.')
   ];
-
 
   String getQuestion() {
     String result;
@@ -33,6 +33,16 @@ class StatBrain {
       result = questionList[_questionNumber].question;
     } else {
       result = printList();
+    }
+    return result;
+  }
+
+  String getSubheading() {
+    String result;
+    if (_questionNumber < questionList.length) {
+      result = questionList[_questionNumber].subheading;
+    } else {
+      result = '';
     }
     return result;
   }

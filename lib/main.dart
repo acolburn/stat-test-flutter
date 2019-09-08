@@ -59,16 +59,29 @@ class _QuizPageState extends State<QuizPage> {
 //                Radius.circular(8.0),
 //              ),
             ),
-            child: Center(
-              child: Text(
-                statBrain.getQuestion(),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  statBrain.getQuestion(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 26.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
+                Text(
+                  statBrain.getSubheading(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
