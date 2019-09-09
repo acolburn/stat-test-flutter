@@ -33,7 +33,8 @@ class StatBrain {
     if (_questionNumber < questionList.length) {
       result = questionList[_questionNumber].question;
     } else {
-      result = printList();
+//      result = printList();
+      result = '';
     }
     return result;
   }

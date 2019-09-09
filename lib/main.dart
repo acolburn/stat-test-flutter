@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'stat_brain.dart';
-//import 'tests.dart';
+import 'tests.dart';
 
 void main() {
   runApp(StatTest());
@@ -41,6 +41,32 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
+    String _questionText = statBrain.getQuestion();
+    if (_questionText == '') {
+      Navigator.push(
+        context,
+        MaterialPageRoute<void>(builder: (BuildContext context) {
+          return PageView(
+            children: <Widget>[
+              ListView.builder(
+                itemCount: testList.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      leading: Icon(Icons.wb_sunny),
+                      title: Text(testList[index].name),
+                      subtitle: Text('Details about the test would go here.'),
+                    ),
+                  );
+                }, //itemBuilder
+              )
+            ],
+          );
+        } //builder
+            ),
+      ); //Navigator.push
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -64,7 +90,8 @@ class _QuizPageState extends State<QuizPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
-                  statBrain.getQuestion(),
+//                  statBrain.getQuestion(),
+                  _questionText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 26.0,
