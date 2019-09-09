@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'stat_brain.dart';
-import 'tests.dart';
+//import 'tests.dart';
 
 void main() {
   runApp(StatTest());

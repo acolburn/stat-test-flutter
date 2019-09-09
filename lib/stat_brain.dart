@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'tests.dart';
 
 class Question {
@@ -28,7 +29,7 @@ class StatBrain {
   ];
 
   String getQuestion() {
-    String result;
+    String result = '';
     if (_questionNumber < questionList.length) {
       result = questionList[_questionNumber].question;
     } else {

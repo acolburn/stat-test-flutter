@@ -107,6 +107,31 @@ String printList() {
   return result;
 }
 
+//void createResultsPage() {
+//  Navigator.push(
+//    context,
+//    MaterialPageRoute<void>(builder: (BuildContext context) {
+//      return PageView(
+//        children: <Widget>[
+//          ListView.builder(
+//            itemCount: testList.length,
+//            itemBuilder: (context, index) {
+//              return Card(
+//                child: ListTile(
+//                  leading: Icon(Icons.wb_sunny),
+//                  title: Text(testList[index].name),
+//                  subtitle: Text('Details about the test would go here.'),
+//                ),
+//              );
+//            }, //itemBuilder
+//          )
+//        ],
+//      );
+//    } //builder
+//        ),
+//  ); //Navigator.push
+//}
+
 void isParametric(bool value) {
   List<aTest> newList = [];
   for (aTest test in testList) {
