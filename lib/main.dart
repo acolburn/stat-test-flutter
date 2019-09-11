@@ -82,48 +82,6 @@ class _QuestionPageState extends State<QuestionPage> {
                 )
               ],
             ),
-
-//            Row(
-//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//              children: <Widget>[
-//                FlatButton(
-//                  color: Colors.grey[300],
-//                  child: Row(
-//                    children: <Widget>[
-//                      Icon(Icons.arrow_back),
-//                      Text(
-//                        'Back',
-//                        style: TextStyle(
-//                          fontSize: 15.0,
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                  onPressed: () {
-//                    setState(() {
-//                      statBrain.previousQuestion();
-//                    });
-//                  },
-//                ),
-//                FlatButton(
-//                  color: Colors.grey[300],
-//                  child: Text(
-//                    'Start Over',
-//                    style: TextStyle(
-//                      fontSize: 15.0,
-//                    ),
-//                  ),
-//                  onPressed: () {
-//                    setState(() {
-//                      statBrain.resetTestList();
-//                      statBrain.resetQuestionNumber();
-//                    });
-//                  },
-//                ),
-//              ],
-//            ),
-//          ],
-//        ),
           ),
         ),
       );
