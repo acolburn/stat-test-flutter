@@ -43,7 +43,66 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     String _questionText = statBrain.getQuestion();
-    if (_questionText == '' && testList.length > 0) {
+    if (_questionText == '' && testList.length == 0) {
+      return MaterialApp(
+        home: Scaffold(
+          backgroundColor: Colors.grey.shade900,
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/background.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Scaffold(
+                  appBar: AppBar(
+                    title: const Text('Results'),
+                  ),
+                  body: PageView(
+                    children: <Widget>[
+                      ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            child: ListTile(
+                              leading: Icon(Icons.wb_sunny),
+                              title: Text(
+                                  'NONE OF MY TESTS MATCH YOUR CONDITIONS.'),
+                              subtitle: Text(
+                                  'Try again or consult your statistical adviser.'),
+                            ),
+                          );
+                        }, //itemBuilder
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: onTabTap,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.arrow_back),
+                title: Text('Back'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Start Over'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.arrow_forward),
+                title: Text('Ignore'),
+              )
+            ],
+          ),
+        ),
+      );
+    } else if (_questionText == '' && testList.length > 0) {
       return MaterialApp(
         home: Scaffold(
           backgroundColor: Colors.grey.shade900,
@@ -233,5 +292,3 @@ class _QuestionPageState extends State<QuestionPage> {
     }
   }
 }
-
-//TODO: Response when no tests match, i.e., testList.length==0
