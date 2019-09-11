@@ -97,15 +97,15 @@ List<aTest> testList = [
   )
 ];
 
-String printList() {
-  String result = 'Test(s) to Consider:\n\n';
-  if (testList.length == 0) {
-    result = "No tests match all the given criteria.";
-  } else {
-    testList.forEach((element) => result += '\n' + element.name);
-  }
-  return result;
-}
+//String printList() {
+//  String result = 'Test(s) to Consider:\n\n';
+//  if (testList.length == 0) {
+//    result = "No tests match all the given criteria.";
+//  } else {
+//    testList.forEach((element) => result += '\n' + element.name);
+//  }
+//  return result;
+//}
 
 //void createResultsPage() {
 //  Navigator.push(

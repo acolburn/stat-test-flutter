@@ -84,7 +84,7 @@ class StatBrain {
       item.response = null;
     }
     updateTestList();
-    printList();
+//    printList();
   }
 
   void updateTestList() {
