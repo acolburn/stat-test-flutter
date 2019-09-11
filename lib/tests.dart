@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 
-class aTest {
+class Test {
   String name;
   bool twoGroups;
   bool continuous;
@@ -8,7 +8,7 @@ class aTest {
   bool covariates;
   bool paired;
 
-  aTest(
+  Test(
       {this.name,
       this.twoGroups,
       this.continuous,
@@ -17,16 +17,16 @@ class aTest {
       this.paired});
 } //end aTest
 
-List<aTest> originalList = testList;
-List<aTest> testList = [
-  aTest(
+List<Test> originalList = testList;
+List<Test> testList = [
+  Test(
       name: "independent samples t-test",
       twoGroups: true,
       continuous: true,
       parametric: true,
       covariates: false,
       paired: false),
-  aTest(
+  Test(
     name: "dependent samples t-test",
     twoGroups: true,
     continuous: true,
@@ -34,7 +34,7 @@ List<aTest> testList = [
     covariates: false,
     paired: true,
   ),
-  aTest(
+  Test(
     name: "Mann-Whitney U-test",
     twoGroups: true,
     continuous: true,
@@ -42,7 +42,7 @@ List<aTest> testList = [
     covariates: false,
     paired: false,
   ),
-  aTest(
+  Test(
     name: "Wilcoxson matched pairs test",
     twoGroups: true,
     continuous: true,
@@ -50,7 +50,7 @@ List<aTest> testList = [
     covariates: false,
     paired: true,
   ),
-  aTest(
+  Test(
     name: "one-way independent ANOVA",
     twoGroups: false,
     continuous: true,
@@ -58,7 +58,7 @@ List<aTest> testList = [
     covariates: false,
     paired: false,
   ),
-  aTest(
+  Test(
     name: "Kruskall-Wallis test",
     twoGroups: false,
     continuous: true,
@@ -66,7 +66,7 @@ List<aTest> testList = [
     covariates: false,
     paired: false,
   ),
-  aTest(
+  Test(
     name: "one-way repeated measures ANOVA",
     twoGroups: false,
     continuous: true,
@@ -74,7 +74,7 @@ List<aTest> testList = [
     covariates: false,
     paired: true,
   ),
-  aTest(
+  Test(
     name: "Friedman's ANOVA",
     twoGroups: false,
     continuous: true,
@@ -82,14 +82,14 @@ List<aTest> testList = [
     covariates: false,
     paired: true,
   ),
-  aTest(
+  Test(
     name: "ANCOVA",
     continuous: true,
     parametric: true,
     covariates: true,
     paired: false,
   ),
-  aTest(
+  Test(
     name: "Chi square",
     continuous: false,
     parametric: false,
@@ -133,8 +133,8 @@ List<aTest> testList = [
 //}
 
 void isParametric(bool value) {
-  List<aTest> newList = [];
-  for (aTest test in testList) {
+  List<Test> newList = [];
+  for (Test test in testList) {
     if (test.parametric == value || test.parametric == null) {
       newList.add(test);
     }
@@ -143,8 +143,8 @@ void isParametric(bool value) {
 }
 
 void isTwoGroups(bool value) {
-  List<aTest> newList = [];
-  for (aTest test in testList) {
+  List<Test> newList = [];
+  for (Test test in testList) {
     if (test.twoGroups == value || test.twoGroups == null) {
       newList.add(test);
     }
@@ -153,8 +153,8 @@ void isTwoGroups(bool value) {
 }
 
 void hasCovariate(bool value) {
-  List<aTest> newList = [];
-  for (aTest test in testList) {
+  List<Test> newList = [];
+  for (Test test in testList) {
     if (test.covariates == value || test.covariates == null) {
       newList.add(test);
     }
@@ -163,8 +163,8 @@ void hasCovariate(bool value) {
 }
 
 void isPaired(bool value) {
-  List<aTest> newList = [];
-  for (aTest test in testList) {
+  List<Test> newList = [];
+  for (Test test in testList) {
     if (test.paired == value || test.paired == null) {
       newList.add(test);
     }
@@ -173,8 +173,8 @@ void isPaired(bool value) {
 }
 
 void isContinuous(bool value) {
-  List<aTest> newList = [];
-  for (aTest test in testList) {
+  List<Test> newList = [];
+  for (Test test in testList) {
     if (test.continuous == value || test.continuous == null) {
       newList.add(test);
     }
