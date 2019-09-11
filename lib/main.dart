@@ -8,6 +8,10 @@ void main() {
 
 StatBrain statBrain = StatBrain();
 
+void onTabTap(int index) {
+  print(index);
+}
+
 class StatTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,7 @@ class StatTest extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          onTap: onTabTap,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.arrow_back),
