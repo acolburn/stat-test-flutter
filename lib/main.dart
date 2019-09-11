@@ -28,6 +28,22 @@ class StatTest extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.arrow_back),
+              title: Text('Back'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text('Start Over'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.arrow_forward),
+              title: Text('Ignore'),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -63,17 +79,7 @@ class _QuizPageState extends State<QuizPage> {
             )
           ],
         ),
-        bottomNavigationBar:
-            BottomNavigationBar(items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_back),
-            title: Text('Back'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Start Over'),
-          ),
-        ]),
+
 //            Row(
 //              mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //              children: <Widget>[
