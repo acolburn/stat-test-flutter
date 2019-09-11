@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'stat_brain.dart';
+import 'questions.dart';
 import 'tests.dart';
 
 void main() {
@@ -25,12 +25,7 @@ class StatTest extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              child: QuizPage(),
-            ),
-          ),
+          child: QuestionPage(),
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: onTabTap,
@@ -54,36 +49,39 @@ class StatTest extends StatelessWidget {
   }
 }
 
-class QuizPage extends StatefulWidget {
+class QuestionPage extends StatefulWidget {
   @override
-  _QuizPageState createState() => _QuizPageState();
+  _QuestionPageState createState() => _QuestionPageState();
 }
 
-class _QuizPageState extends State<QuizPage> {
+class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     String _questionText = statBrain.getQuestion();
     if (_questionText == '' && testList.length > 0) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Results'),
-        ),
-        body: PageView(
-          children: <Widget>[
-            ListView.builder(
-              itemCount: testList.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    leading: Icon(Icons.wb_sunny),
-                    title: Text(testList[index].name),
-                    subtitle: Text('Details about the test would go here.'),
-                  ),
-                );
-              }, //itemBuilder
-            )
-          ],
-        ),
+      return SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Results'),
+            ),
+            body: PageView(
+              children: <Widget>[
+                ListView.builder(
+                  itemCount: testList.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        leading: Icon(Icons.wb_sunny),
+                        title: Text(testList[index].name),
+                        subtitle: Text('Details about the test would go here.'),
+                      ),
+                    );
+                  }, //itemBuilder
+                )
+              ],
+            ),
 
 //            Row(
 //              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,6 +124,8 @@ class _QuizPageState extends State<QuizPage> {
 //            ),
 //          ],
 //        ),
+          ),
+        ),
       );
     } else {
       return Column(
