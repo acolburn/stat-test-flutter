@@ -102,23 +102,7 @@ class _QuestionPageState extends State<QuestionPage> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: onTabTap,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_back),
-                title: Text('Back'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Start Over'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_forward),
-                title: Text('Ignore'),
-              )
-            ],
-          ),
+          bottomNavigationBar: navBar(),
         ),
       );
     } else if (_questionText == '' && testList.length > 0) {
@@ -146,23 +130,7 @@ class _QuestionPageState extends State<QuestionPage> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: onTabTap,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_back),
-                title: Text('Back'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Start Over'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_forward),
-                title: Text('Ignore'),
-              )
-            ],
-          ),
+          bottomNavigationBar: navBar(),
         ),
       );
     } else {
@@ -275,25 +243,29 @@ class _QuestionPageState extends State<QuestionPage> {
               ],
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: onTabTap,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_back),
-                title: Text('Back'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Start Over'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_forward),
-                title: Text('Ignore'),
-              )
-            ],
-          ),
+          bottomNavigationBar: navBar(),
         ),
       );
     }
+  }
+
+  BottomNavigationBar navBar() {
+    return BottomNavigationBar(
+      onTap: onTabTap,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.arrow_back),
+          title: Text('Back'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Start Over'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.arrow_forward),
+          title: Text('Ignore'),
+        )
+      ],
+    );
   }
 }
