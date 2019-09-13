@@ -21,23 +21,133 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
-  void onTabTap(int index) {
-    if (index == 0) {
-      setState(
-        () {
-          statBrain.previousQuestion();
-        },
-      );
-    } else if (index == 1) {
-      setState(() {
-        statBrain.resetTestList();
-        statBrain.resetQuestionNumber();
-      });
-    } else if (index == 2) {
-      setState(() {
-        statBrain.nextQuestion();
-      });
+  String _questionText = '';
+
+  @override
+  Widget build(BuildContext context) {
+    _questionText = statBrain.getQuestion();
+    if (_questionText == '' && testList.length == 0) {
+      return ResultsPage(noMatches());
+    } else if (_questionText == '' && testList.length > 0) {
+      return ResultsPage(matchList());
+    } else {
+      return QuestionPage();
     }
+  }
+
+  MaterialApp QuestionPage() {
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.grey.shade900,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                flex: 4,
+                child: Container(
+                  margin: EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.white,
+                    ),
+//              borderRadius: BorderRadius.all(
+//                Radius.circular(8.0),
+//              ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Text(
+//                  statBrain.getQuestion(),
+                        _questionText,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 26.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        statBrain.getSubheading(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Material(
+                    elevation: 5.0,
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(30.0),
+                    child: MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          statBrain.yesTap();
+                        });
+                      },
+                      minWidth: 200.0,
+                      height: 42.0,
+                      child: Text(
+                        'Yes',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Material(
+                      elevation: 5.0,
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(30.0),
+                      child: MaterialButton(
+                        onPressed: () {
+                          setState(() {
+                            statBrain.noTap();
+                          });
+                        },
+                        minWidth: 200.0,
+                        height: 42.0,
+                        child: Text(
+                          'No',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      )),
+                ),
+              ),
+            ],
+          ),
+        ),
+        bottomNavigationBar: navBar(),
+      ),
+    );
   }
 
   List<Widget> noMatches() {
@@ -74,178 +184,52 @@ class _QuestionPageState extends State<QuestionPage> {
     ];
   }
 
-  @override
-  Widget build(BuildContext context) {
-    String _questionText = statBrain.getQuestion();
-    if (_questionText == '' && testList.length == 0) {
-      return MaterialApp(
-        home: Scaffold(
-          backgroundColor: Colors.grey.shade900,
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/background.jpg'),
-                fit: BoxFit.cover,
-              ),
+  MaterialApp ResultsPage(List<Widget> matches) {
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.grey.shade900,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background.jpg'),
+              fit: BoxFit.cover,
             ),
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Scaffold(
-                  appBar: AppBar(
-                    title: const Text('Results'),
-                  ),
-                  body: PageView(
-                    children: noMatches(),
-                  ),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Scaffold(
+                appBar: AppBar(
+                  title: const Text('Results'),
+                ),
+                body: PageView(
+                  children: matches,
                 ),
               ),
             ),
           ),
-          bottomNavigationBar: navBar(),
         ),
+        bottomNavigationBar: navBar(),
+      ),
+    );
+  }
+
+  void onTabTap(int index) {
+    if (index == 0) {
+      setState(
+        () {
+          statBrain.previousQuestion();
+        },
       );
-    } else if (_questionText == '' && testList.length > 0) {
-      return MaterialApp(
-        home: Scaffold(
-          backgroundColor: Colors.grey.shade900,
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/background.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Scaffold(
-                  appBar: AppBar(
-                    title: const Text('Results'),
-                  ),
-                  body: PageView(
-                    children: matchList(),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          bottomNavigationBar: navBar(),
-        ),
-      );
-    } else {
-      return MaterialApp(
-        home: Scaffold(
-          backgroundColor: Colors.grey.shade900,
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/background.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Expanded(
-                  flex: 4,
-                  child: Container(
-                    margin: EdgeInsets.all(20.0),
-                    padding: EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.white,
-                      ),
-//              borderRadius: BorderRadius.all(
-//                Radius.circular(8.0),
-//              ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Text(
-//                  statBrain.getQuestion(),
-                          _questionText,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 26.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          statBrain.getSubheading(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Material(
-                      elevation: 5.0,
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(30.0),
-                      child: MaterialButton(
-                        onPressed: () {
-                          setState(() {
-                            statBrain.yesTap();
-                          });
-                        },
-                        minWidth: 200.0,
-                        height: 42.0,
-                        child: Text(
-                          'Yes',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Material(
-                        elevation: 5.0,
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(30.0),
-                        child: MaterialButton(
-                          onPressed: () {
-                            setState(() {
-                              statBrain.noTap();
-                            });
-                          },
-                          minWidth: 200.0,
-                          height: 42.0,
-                          child: Text(
-                            'No',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          bottomNavigationBar: navBar(),
-        ),
-      );
+    } else if (index == 1) {
+      setState(() {
+        statBrain.resetTestList();
+        statBrain.resetQuestionNumber();
+      });
+    } else if (index == 2) {
+      setState(() {
+        statBrain.nextQuestion();
+      });
     }
   }
 
