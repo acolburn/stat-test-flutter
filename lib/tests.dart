@@ -2,6 +2,7 @@
 
 class Test {
   String name;
+  String description;
   bool twoGroups;
   bool continuous;
   bool parametric;
@@ -10,6 +11,7 @@ class Test {
 
   Test(
       {this.name,
+      this.description,
       this.twoGroups,
       this.continuous,
       this.parametric,
@@ -21,6 +23,7 @@ List<Test> originalList = testList;
 List<Test> testList = [
   Test(
       name: "independent samples t-test",
+      description: "A parametric test comparing two independent sample means",
       twoGroups: true,
       continuous: true,
       parametric: true,
@@ -28,6 +31,7 @@ List<Test> testList = [
       paired: false),
   Test(
     name: "dependent samples t-test",
+    description: "A parametric test comparing two matched sample means",
     twoGroups: true,
     continuous: true,
     parametric: true,
@@ -36,6 +40,8 @@ List<Test> testList = [
   ),
   Test(
     name: "Mann-Whitney U-test",
+    description:
+        "A nonparametric test comparing two independent sample medians",
     twoGroups: true,
     continuous: true,
     parametric: false,
@@ -44,6 +50,7 @@ List<Test> testList = [
   ),
   Test(
     name: "Wilcoxson matched pairs test",
+    description: "A nonparametric test comparing two matched sample medians",
     twoGroups: true,
     continuous: true,
     parametric: false,
@@ -52,6 +59,7 @@ List<Test> testList = [
   ),
   Test(
     name: "one-way independent ANOVA",
+    description: "A parametric test comparing independent sample means",
     twoGroups: false,
     continuous: true,
     parametric: true,
@@ -60,6 +68,8 @@ List<Test> testList = [
   ),
   Test(
     name: "Kruskall-Wallis test",
+    description:
+        "A nonparametric test comparing three or more independent samples",
     twoGroups: false,
     continuous: true,
     parametric: false,
@@ -68,6 +78,7 @@ List<Test> testList = [
   ),
   Test(
     name: "one-way repeated measures ANOVA",
+    description: "A parametric test comparing three or more matched samples",
     twoGroups: false,
     continuous: true,
     parametric: true,
@@ -76,6 +87,7 @@ List<Test> testList = [
   ),
   Test(
     name: "Friedman's ANOVA",
+    description: "A nonparametric test comparing three or more matched samples",
     twoGroups: false,
     continuous: true,
     parametric: false,
@@ -84,6 +96,8 @@ List<Test> testList = [
   ),
   Test(
     name: "ANCOVA",
+    description:
+        "A parametric test comparing independent samples, controlling for a pre-existing covariate",
     continuous: true,
     parametric: true,
     covariates: true,
@@ -91,6 +105,7 @@ List<Test> testList = [
   ),
   Test(
     name: "Chi square",
+    description: "A nonparametric test comparing samples with categorical data",
     continuous: false,
     parametric: false,
     covariates: false,

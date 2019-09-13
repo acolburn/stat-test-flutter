@@ -129,8 +129,7 @@ class _QuestionPageState extends State<QuestionPage> {
                             child: ListTile(
                               leading: Icon(Icons.wb_sunny),
                               title: Text(testList[index].name),
-                              subtitle:
-                                  Text('Details about the test would go here.'),
+                              subtitle: Text(testList[index].description),
                             ),
                           );
                         }, //itemBuilder
