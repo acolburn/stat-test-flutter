@@ -40,6 +40,40 @@ class _QuestionPageState extends State<QuestionPage> {
     }
   }
 
+  List<Widget> noMatches() {
+    return <Widget>[
+      ListView.builder(
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('NONE OF MY TESTS MATCH YOUR CONDITIONS.'),
+              subtitle: Text('Try again or consult your statistical adviser.'),
+            ),
+          );
+        }, //itemBuilder
+      )
+    ];
+  }
+
+  List<Widget> matchList() {
+    return <Widget>[
+      ListView.builder(
+        itemCount: testList.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text(testList[index].name),
+              subtitle: Text(testList[index].description),
+            ),
+          );
+        }, //itemBuilder
+      )
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     String _questionText = statBrain.getQuestion();
@@ -62,22 +96,7 @@ class _QuestionPageState extends State<QuestionPage> {
                     title: const Text('Results'),
                   ),
                   body: PageView(
-                    children: <Widget>[
-                      ListView.builder(
-                        itemCount: 1,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: ListTile(
-                              leading: Icon(Icons.wb_sunny),
-                              title: Text(
-                                  'NONE OF MY TESTS MATCH YOUR CONDITIONS.'),
-                              subtitle: Text(
-                                  'Try again or consult your statistical adviser.'),
-                            ),
-                          );
-                        }, //itemBuilder
-                      )
-                    ],
+                    children: noMatches(),
                   ),
                 ),
               ),
@@ -121,20 +140,7 @@ class _QuestionPageState extends State<QuestionPage> {
                     title: const Text('Results'),
                   ),
                   body: PageView(
-                    children: <Widget>[
-                      ListView.builder(
-                        itemCount: testList.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: ListTile(
-                              leading: Icon(Icons.wb_sunny),
-                              title: Text(testList[index].name),
-                              subtitle: Text(testList[index].description),
-                            ),
-                          );
-                        }, //itemBuilder
-                      )
-                    ],
+                    children: matchList(),
                   ),
                 ),
               ),
