@@ -35,6 +35,38 @@ class _QuestionPageState extends State<QuestionPage> {
     }
   }
 
+  Material decisionButton(Color btnColor, Function btnPressed, String btnText) {
+    return Material(
+      elevation: 5.0,
+      color: btnColor,
+      borderRadius: BorderRadius.circular(30.0),
+      child: MaterialButton(
+        onPressed: btnPressed,
+        minWidth: 200.0,
+        height: 42.0,
+        child: Text(
+          btnText,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+          ),
+        ),
+      ),
+    );
+  }
+
+  void noBtnPressed() {
+    setState(() {
+      statBrain.noTap();
+    });
+  }
+
+  void yesBtnPressed() {
+    setState(() {
+      statBrain.yesTap();
+    });
+  }
+
   MaterialApp QuestionPage() {
     return MaterialApp(
       home: Scaffold(
@@ -69,7 +101,6 @@ class _QuestionPageState extends State<QuestionPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Text(
-//                  statBrain.getQuestion(),
                         _questionText,
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -94,52 +125,13 @@ class _QuestionPageState extends State<QuestionPage> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(15.0),
-                  child: Material(
-                    elevation: 5.0,
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(30.0),
-                    child: MaterialButton(
-                      onPressed: () {
-                        setState(() {
-                          statBrain.yesTap();
-                        });
-                      },
-                      minWidth: 200.0,
-                      height: 42.0,
-                      child: Text(
-                        'Yes',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: decisionButton(Colors.green, yesBtnPressed, 'Yes'),
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(15.0),
-                  child: Material(
-                      elevation: 5.0,
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(30.0),
-                      child: MaterialButton(
-                        onPressed: () {
-                          setState(() {
-                            statBrain.noTap();
-                          });
-                        },
-                        minWidth: 200.0,
-                        height: 42.0,
-                        child: Text(
-                          'No',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      )),
+                  child: decisionButton(Colors.red, noBtnPressed, 'No'),
                 ),
               ),
             ],
