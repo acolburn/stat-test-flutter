@@ -181,12 +181,6 @@ class _QuestionPageState extends State<QuestionPage> {
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
         body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/background.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
