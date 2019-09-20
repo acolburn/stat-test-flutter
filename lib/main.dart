@@ -27,12 +27,24 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget build(BuildContext context) {
     _questionText = statBrain.getQuestion();
     if (_questionText == '' && testList.length == 0) {
-      return ResultsPage(noMatches());
+      return portraitResultsPage(noMatches());
     } else if (_questionText == '' && testList.length > 0) {
-      return ResultsPage(matchList());
+      return buildResponsiveLayout();
     } else {
-      return QuestionPage();
+      return questionPage();
     }
+  }
+
+  OrientationBuilder buildResponsiveLayout() {
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        if (orientation == Orientation.portrait) {
+          return portraitResultsPage(matchList());
+        } else {
+          return landscapeResultsPage(matchList());
+        }
+      },
+    );
   }
 
   Material decisionButton(Color btnColor, Function btnPressed, String btnText) {
@@ -67,7 +79,7 @@ class _QuestionPageState extends State<QuestionPage> {
     });
   }
 
-  MaterialApp QuestionPage() {
+  MaterialApp questionPage() {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
@@ -176,7 +188,7 @@ class _QuestionPageState extends State<QuestionPage> {
     ];
   }
 
-  MaterialApp ResultsPage(List<Widget> matches) {
+  MaterialApp landscapeResultsPage(List<Widget> matches) {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
@@ -184,30 +196,43 @@ class _QuestionPageState extends State<QuestionPage> {
           appBar: AppBar(
             title: const Text('Results'),
           ),
-          body: buildResultsList(matches),
+          body: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: PageView(
+                  children: matches,
+                ),
+              ),
+              Expanded(
+                //placeholder text, waiting for WebView//
+                flex: 7,
+                child: Container(
+                  color: Colors.yellow,
+                ),
+              ),
+            ],
+          ),
           bottomNavigationBar: navBar(),
         ),
       ),
     );
   }
 
-  Widget buildResultsList(List<Widget> matches) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          flex: 3,
-          child: PageView(
+  MaterialApp portraitResultsPage(List<Widget> matches) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.grey.shade900,
+          appBar: AppBar(
+            title: const Text('Results'),
+          ),
+          body: PageView(
             children: matches,
           ),
+          bottomNavigationBar: navBar(),
         ),
-        Expanded(
-          //placeholder text, waiting for WebView//
-          flex: 7,
-          child: Container(
-            color: Colors.yellow,
-          ),
-        ),
-      ],
+      ),
     );
   }
 
