@@ -180,22 +180,26 @@ class _QuestionPageState extends State<QuestionPage> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
-        body: Container(
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Scaffold(
-                appBar: AppBar(
-                  title: const Text('Results'),
-                ),
-                body: PageView(
-                  children: matches,
-                ),
-              ),
+        body: buildResultsList(matches),
+        bottomNavigationBar: navBar(),
+      ),
+    );
+  }
+
+  Container buildResultsList(List<Widget> matches) {
+    return Container(
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Results'),
+            ),
+            body: PageView(
+              children: matches,
             ),
           ),
         ),
-        bottomNavigationBar: navBar(),
       ),
     );
   }
