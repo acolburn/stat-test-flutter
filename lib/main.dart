@@ -178,7 +178,14 @@ class _QuestionPageState extends State<QuestionPage> {
 
   MaterialApp ResultsPage(List<Widget> matches) {
     return MaterialApp(
-      home: SafNavigationBar: navBar(),
+      home: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.grey.shade900,
+          appBar: AppBar(
+            title: const Text('Results'),
+          ),
+          body: buildResultsList(matches),
+          bottomNavigationBar: navBar(),
         ),
       ),
     );
