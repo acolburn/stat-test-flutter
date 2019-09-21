@@ -192,6 +192,17 @@ class _QuestionPageState extends State<QuestionPage> {
                   setState(() {
                     _controller.loadUrl(testList[index].url);
                   });
+                } else {
+                  setState(() {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return WebView(
+                          initialUrl: testList[index].url,
+                          onWebViewCreated: (WebViewController) {
+                            _controller = WebViewController;
+                          });
+                    }));
+                  });
                 }
               },
             ),
