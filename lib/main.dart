@@ -196,11 +196,17 @@ class _QuestionPageState extends State<QuestionPage> {
                   setState(() {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return WebView(
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: const Text('Learn More About Your Test'),
+                        ),
+                        body: WebView(
                           initialUrl: testList[index].url,
-                          onWebViewCreated: (WebViewController) {
-                            _controller = WebViewController;
-                          });
+//                          onWebViewCreated: (WebViewController) {
+//                            _controller = WebViewController;
+//                          },
+                        ),
+                      );
                     }));
                   });
                 }
