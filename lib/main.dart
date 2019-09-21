@@ -8,8 +8,9 @@ void main() {
 }
 
 StatBrain statBrain = StatBrain();
-String url = 'http://www.csulb.edu/~acolburn';
+String url = '';
 WebViewController _controller;
+bool isLandscape;
 
 class StatTest extends StatelessWidget {
   @override
@@ -41,10 +42,12 @@ class _QuestionPageState extends State<QuestionPage> {
   OrientationBuilder buildResponsiveLayout() {
     return OrientationBuilder(
       builder: (context, orientation) {
-        if (orientation == Orientation.portrait) {
-          return portraitResultsPage(matchList());
-        } else {
+        if (orientation == Orientation.landscape) {
+          isLandscape = true;
           return landscapeResultsPage(matchList());
+        } else {
+          isLandscape = false;
+          return portraitResultsPage(matchList());
         }
       },
     );
@@ -185,9 +188,11 @@ class _QuestionPageState extends State<QuestionPage> {
               title: Text(testList[index].name),
               subtitle: Text(testList[index].description),
               onTap: () {
-                setState(() {
-                  _controller.loadUrl('$url');
-                });
+                if (isLandscape) {
+                  setState(() {
+                    _controller.loadUrl(testList[index].url);
+                  });
+                }
               },
             ),
           );
@@ -215,7 +220,7 @@ class _QuestionPageState extends State<QuestionPage> {
               Expanded(
                 flex: 7,
                 child: WebView(
-                  initialUrl: 'http://www.duckduckgo.com',
+                  initialUrl: '',
                   onWebViewCreated: (WebViewController) {
                     _controller = WebViewController;
                   },
