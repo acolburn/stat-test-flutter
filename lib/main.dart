@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+//import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'questions.dart';
 import 'tests.dart';
 
@@ -9,7 +10,7 @@ void main() {
 
 StatBrain statBrain = StatBrain();
 String url = '';
-WebViewController _controller;
+//WebViewController _controller;
 bool isLandscape;
 
 class StatTest extends StatelessWidget {
@@ -44,7 +45,7 @@ class _QuestionPageState extends State<QuestionPage> {
       builder: (context, orientation) {
         if (orientation == Orientation.landscape) {
           isLandscape = true;
-          return landscapeResultsPage(matchList());
+          return LandscapeResultsPage(matchList());
         } else {
           isLandscape = false;
           return portraitResultsPage(matchList());
@@ -190,25 +191,22 @@ class _QuestionPageState extends State<QuestionPage> {
               onTap: () {
                 if (isLandscape) {
                   setState(() {
-                    _controller.loadUrl(testList[index].url);
+                    url = testList[index].url;
                   });
                 } else {
-                  setState(() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          title: const Text('Learn More About Your Test'),
-                        ),
-                        body: WebView(
-                          initialUrl: testList[index].url,
-//                          onWebViewCreated: (WebViewController) {
-//                            _controller = WebViewController;
-//                          },
+                  setState(
+                    () {
+                      url = testList[index].url;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return LearnMoreScreen();
+                          },
                         ),
                       );
-                    }));
-                  });
+                    },
+                  );
                 }
               },
             ),
@@ -218,38 +216,33 @@ class _QuestionPageState extends State<QuestionPage> {
     ];
   }
 
-  MaterialApp landscapeResultsPage(List<Widget> matches) {
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.grey.shade900,
-          appBar: AppBar(
-            title: const Text('Results'),
-          ),
-          body: Row(
-            children: <Widget>[
-              Expanded(
-                flex: 3,
-                child: PageView(
-                  children: matches,
-                ),
-              ),
-              Expanded(
-                flex: 7,
-                child: WebView(
-                  initialUrl: '',
-                  onWebViewCreated: (WebViewController) {
-                    _controller = WebViewController;
-                  },
-                ),
-              ),
-            ],
-          ),
-          bottomNavigationBar: navBar(),
-        ),
-      ),
-    );
-  }
+//  MaterialApp landscapeResultsPage(List<Widget> matches) {
+//    return MaterialApp(
+//      home: SafeArea(
+//        child: Scaffold(
+//          backgroundColor: Colors.grey.shade900,
+//          appBar: AppBar(
+//            title: const Text('Results'),
+//          ),
+//          body: Row(
+//            children: <Widget>[
+//              Expanded(
+//                flex: 3,
+//                child: PageView(
+//                  children: matches,
+//                ),
+//              ),
+//              Expanded(
+//                flex: 7,
+//                child: LearnMoreScreen(),
+//              ),
+//            ],
+//          ),
+//          bottomNavigationBar: navBar(),
+//        ),
+//      ),
+//    );
+//  }
 
   MaterialApp portraitResultsPage(List<Widget> matches) {
     return MaterialApp(
@@ -304,6 +297,60 @@ class _QuestionPageState extends State<QuestionPage> {
           title: Text('Ignore'),
         )
       ],
+    );
+  }
+}
+
+class LearnMoreScreen extends StatefulWidget {
+  @override
+  _LearnMoreScreenState createState() => _LearnMoreScreenState();
+}
+
+class _LearnMoreScreenState extends State<LearnMoreScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return WebviewScaffold(
+      url: url,
+      withZoom: true,
+      appBar: AppBar(title: Text('Learn More About Your Test')),
+    );
+  }
+}
+
+class LandscapeResultsPage extends StatefulWidget {
+  final List<Widget> matches;
+  LandscapeResultsPage(this.matches);
+  @override
+  _LandscapeResultsPageState createState() => _LandscapeResultsPageState();
+}
+
+class _LandscapeResultsPageState extends State<LandscapeResultsPage> {
+  @override
+  Widget build(BuildContext context) {
+    var matches = widget.matches;
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.grey.shade900,
+          appBar: AppBar(
+            title: const Text('Results'),
+          ),
+          body: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: PageView(
+                  children: matches,
+                ),
+              ),
+              Expanded(
+                flex: 7,
+                child: LearnMoreScreen(),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
