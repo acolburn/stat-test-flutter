@@ -9,6 +9,7 @@ void main() {
 
 StatBrain statBrain = StatBrain();
 String url = 'http://www.csulb.edu/~acolburn';
+WebViewController _controller;
 
 class StatTest extends StatelessWidget {
   @override
@@ -183,6 +184,11 @@ class _QuestionPageState extends State<QuestionPage> {
               leading: Icon(Icons.wb_sunny),
               title: Text(testList[index].name),
               subtitle: Text(testList[index].description),
+              onTap: () {
+                setState(() {
+                  _controller.loadUrl('$url');
+                });
+              },
             ),
           );
         }, //itemBuilder
@@ -209,7 +215,10 @@ class _QuestionPageState extends State<QuestionPage> {
               Expanded(
                 flex: 7,
                 child: WebView(
-                  initialUrl: '$url',
+                  initialUrl: 'http://www.duckduckgo.com',
+                  onWebViewCreated: (WebViewController) {
+                    _controller = WebViewController;
+                  },
                 ),
               ),
             ],
