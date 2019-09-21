@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'questions.dart';
 import 'tests.dart';
 
@@ -7,6 +8,7 @@ void main() {
 }
 
 StatBrain statBrain = StatBrain();
+String url = 'http://www.csulb.edu/~acolburn';
 
 class StatTest extends StatelessWidget {
   @override
@@ -205,10 +207,9 @@ class _QuestionPageState extends State<QuestionPage> {
                 ),
               ),
               Expanded(
-                //placeholder text, waiting for WebView//
                 flex: 7,
-                child: Container(
-                  color: Colors.yellow,
+                child: WebView(
+                  initialUrl: '$url',
                 ),
               ),
             ],
