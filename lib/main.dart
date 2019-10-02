@@ -166,7 +166,9 @@ class _QuestionPageState extends State<QuestionPage> {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              leading: Icon(Icons.wb_sunny),
+//              leading: Icon(Icons.wb_sunny),
+              leading: CircleAvatar(
+                  child: Text(testList[index].name[0].toUpperCase())),
               title: Text(testList[index].name),
               subtitle: Text(testList[index].description),
             ),
