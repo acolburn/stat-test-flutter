@@ -57,7 +57,7 @@ List<Test> testList = [
     paired: false,
   ),
   Test(
-    name: "Wilcoxson matched pairs test",
+    name: "Wilcoxson signed rank test",
     description: "A nonparametric test comparing two matched sample medians",
     url:
         'https://statistics.laerd.com/spss-tutorials/wilcoxon-signed-rank-test-using-spss-statistics.php',

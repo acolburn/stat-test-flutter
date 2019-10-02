@@ -202,9 +202,6 @@ class _QuestionPageState extends State<QuestionPage> {
                         ),
                         body: WebView(
                           initialUrl: testList[index].url,
-//                          onWebViewCreated: (WebViewController) {
-//                            _controller = WebViewController;
-//                          },
                         ),
                       );
                     }));
