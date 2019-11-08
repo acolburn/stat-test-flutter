@@ -172,6 +172,14 @@ class _QuestionPageState extends State<QuestionPage> {
                   child: Text(testList[index].name[0].toUpperCase())),
               title: Text(testList[index].name),
               subtitle: Text(testList[index].description),
+              onTap: () async {
+                String url = testList[index].url;
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
             ),
           );
         }, //itemBuilder
