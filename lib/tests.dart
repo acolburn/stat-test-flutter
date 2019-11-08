@@ -3,6 +3,7 @@
 class Test {
   String name;
   String description;
+  String url;
   bool twoGroups;
   bool continuous;
   bool parametric;
@@ -12,6 +13,7 @@ class Test {
   Test(
       {this.name,
       this.description,
+      this.url,
       this.twoGroups,
       this.continuous,
       this.parametric,
@@ -24,6 +26,8 @@ List<Test> testList = [
   Test(
       name: "independent samples t-test",
       description: "A parametric test comparing two independent sample means",
+      url:
+          "https://statistics.laerd.com/statistical-guides/independent-t-test-statistical-guide.php",
       twoGroups: true,
       continuous: true,
       parametric: true,
@@ -32,6 +36,8 @@ List<Test> testList = [
   Test(
     name: "dependent samples t-test",
     description: "A parametric test comparing two matched sample means",
+    url:
+        'https://statistics.laerd.com/statistical-guides/dependent-t-test-statistical-guide.php',
     twoGroups: true,
     continuous: true,
     parametric: true,
@@ -42,6 +48,8 @@ List<Test> testList = [
     name: "Mann-Whitney U-test",
     description:
         "A nonparametric test comparing two independent sample medians",
+    url:
+        'https://statistics.laerd.com/spss-tutorials/mann-whitney-u-test-using-spss-statistics.php',
     twoGroups: true,
     continuous: true,
     parametric: false,
@@ -51,6 +59,8 @@ List<Test> testList = [
   Test(
     name: "Wilcoxson matched pairs test",
     description: "A nonparametric test comparing two matched sample medians",
+    url:
+        'https://statistics.laerd.com/spss-tutorials/wilcoxon-signed-rank-test-using-spss-statistics.php',
     twoGroups: true,
     continuous: true,
     parametric: false,
@@ -60,6 +70,8 @@ List<Test> testList = [
   Test(
     name: "one-way independent ANOVA",
     description: "A parametric test comparing independent sample means",
+    url:
+        'https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide.php',
     twoGroups: false,
     continuous: true,
     parametric: true,
@@ -70,6 +82,8 @@ List<Test> testList = [
     name: "Kruskall-Wallis test",
     description:
         "A nonparametric test comparing three or more independent samples",
+    url:
+        'https://statistics.laerd.com/spss-tutorials/kruskal-wallis-h-test-using-spss-statistics.php',
     twoGroups: false,
     continuous: true,
     parametric: false,
@@ -79,6 +93,8 @@ List<Test> testList = [
   Test(
     name: "one-way repeated measures ANOVA",
     description: "A parametric test comparing three or more matched samples",
+    url:
+        'https://statistics.laerd.com/statistical-guides/repeated-measures-anova-statistical-guide.php',
     twoGroups: false,
     continuous: true,
     parametric: true,
@@ -88,6 +104,8 @@ List<Test> testList = [
   Test(
     name: "Friedman's ANOVA",
     description: "A nonparametric test comparing three or more matched samples",
+    url:
+        'https://statistics.laerd.com/spss-tutorials/friedman-test-using-spss-statistics.php',
     twoGroups: false,
     continuous: true,
     parametric: false,
@@ -98,6 +116,8 @@ List<Test> testList = [
     name: "ANCOVA",
     description:
         "A parametric test comparing independent samples, controlling for a pre-existing covariate",
+    url:
+        'https://statistics.laerd.com/spss-tutorials/ancova-using-spss-statistics.php',
     continuous: true,
     parametric: true,
     covariates: true,
@@ -106,6 +126,8 @@ List<Test> testList = [
   Test(
     name: "Chi square",
     description: "A nonparametric test comparing samples with categorical data",
+    url:
+        'https://statistics.laerd.com/spss-tutorials/chi-square-test-for-association-using-spss-statistics.php',
     continuous: false,
     parametric: false,
     covariates: false,
